@@ -17,16 +17,8 @@
           "include_globs": ["*qid*"],
           "css": ["content.css"],
           "js": ["content.js"]
-        },
-        {
-            "matches": ["https://*.amazon.com/*"],
-            "include_globs": ["*qid*"],
-            "css": ["content.css"],
-            "js": ["contentScript.js"],
-            "run_at": "document_start"
-          }
+        }
     ],
-    "web_accessible_resources": ["injected.js"],
     "options_page": "options.html",
     "icons": {
         "16": "images/16.png",

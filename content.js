@@ -8,10 +8,6 @@ chrome.runtime.onMessage.addListener(
     }
 );
 
-chrome.runtime.sendMessage({contentScriptQuery: "loanOffers"}, function(response) {
-    return true;
-});
-
 //alert('test')
 var price
 
@@ -21,7 +17,9 @@ if (document.getElementById('priceblock_ourprice')) {
     price = document.getElementById('priceblock_dealprice').innerHTML
 }
 
-document.getElementById('productTitle').innerHTML = 'terrance li ' + price
+chrome.runtime.sendMessage({loan_amount: parseFloat(price.substring(1, price.length))}, function(response) {
+    return true;
+});
 
 //deals popup
 var dealsPopUp = document.createElement("div")

@@ -18,13 +18,42 @@ chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         console.log('hi')
         //EVEN API!!!!
-        var lead = '{ "productTypes": [ "loan" ], "personalInformation": { "firstName": "John", "lastName": "Doe", "email": "john@example.com", "zipcode": "98006", "ipAddress": "8.8.8.8", "dateOfBirth": "1993-10-09", "educationLevel": "bachelors" }, "loanInformation": {}, "creditInformation": { "providedNumericCreditScore": 600 }, "financialInformation": { "employmentStatus": "employed", "monthlyNetIncome": 7000 }, "legalInformation": { "consentsToFcra": true, "consentsToTcpa": true, "tcpaLanguage": "I agree to be contacted by Even Financial and its partners at the telephone number(s) I have provided above to explore personal loan offers, including contact through automatic dialing systems, artificial or pre-recorded voice messaging, or text message. I understand my consent is not required as a condition to purchasing any goods or services from anyone." } }'
+        var lead = {
+            "productTypes": [
+              "loan"
+            ], 
+            "personalInformation": {
+              "firstName": "John", 
+              "lastName": "Doe", 
+              "email": "john@example.com", 
+              "zipcode": "98006", 
+              "ipAddress": "8.8.8.8",
+              "dateOfBirth": "1993-10-09", 
+              "educationLevel": "bachelors"
+            }, 
+            "loanInformation": {
+                "purpose": "large_purchases",
+                "loan_amount": request.loan_amount
+            }, 
+            "creditInformation": {
+              "providedNumericCreditScore": 600
+            }, 
+            "financialInformation": {
+              "employmentStatus": "employed", 
+              "monthlyNetIncome": 7000
+            }, 
+            "legalInformation": {
+              "consentsToFcra": true, 
+              "consentsToTcpa": true, 
+              "tcpaLanguage": "I agree to be contacted by Even Financial and its partners at the telephone number(s) I have provided above to explore personal loan offers, including contact through automatic dialing systems, artificial or pre-recorded voice messaging, or text message. I understand my consent is not required as a condition to purchasing any goods or services from anyone."
+            }
+        }
         var myHeaders = new Headers({
             'Authorization': 'Bearer ' + EVEN_API_KEY,
             'Accept': 'application/vnd.evenfinancial.v1+json',
             'Content-Type': 'application/json'
         });
-        const requestAPI = new Request('https://api.evenfinancial.com/leads/rateTables', {method: 'POST', body: lead, headers: myHeaders, mode: 'cors'});
+        const requestAPI = new Request('https://api.evenfinancial.com/leads/rateTables', {method: 'POST', body: JSON.stringify(lead), headers: myHeaders, mode: 'cors'});
         fetch(requestAPI)
         .then(response => {
             return response.json()

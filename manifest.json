@@ -2,7 +2,7 @@
     "name": "mantissa",
     "version": "1.0",
     "description": "EVEN for you",
-    "permissions": ["webRequest", "activeTab", "declarativeContent", "storage", "https://www.amazon.com/", "https://*.evenfinancial.com/"],
+    "permissions": ["webRequest", "activeTab", "declarativeContent", "storage", "https://www.amazon.com/", "https://www.zillow.com/", "https://*.evenfinancial.com/"],
     "background": {
       "scripts": ["background.js"],
       "persistent": true
@@ -17,6 +17,11 @@
           "include_globs": ["*dp*"],
           "css": ["content.css"],
           "js": ["content.js"]
+        },
+        {
+            "matches": ["https://*.zillow.com/community/*"],
+            "css": ["content.css"],
+            "js": ["contentZillow.js"]
         }
     ],
     "options_page": "options.html",

@@ -10,6 +10,17 @@ if (document.getElementById('priceblock_ourprice')) {
 
 document.getElementById('productTitle').innerHTML = 'terrance li ' + price
 
+// .then(response => {
+//     console.log(response)
+//     return response.json()
+// })
+// .then(response => {
+//     console.log(response)
+//     // ...
+// }).catch(error => {
+//     console.error(error);
+// });
+
 //deals popup
 var dealsPopUp = document.createElement("div")
 dealsPopUp.id = 'dealsPopUp'
@@ -47,16 +58,6 @@ topBanner.onclick = function() {
     const request = new Request('https://api.evenfinancial.com/leads/rateTables', {method: 'POST', body: lead, headers: myHeaders, mode: 'cors'});
 
     fetch(request)
-    .then(response => {
-        console.log(response)
-        return response.json()
-    })
-    .then(response => {
-        console.log(response)
-        // ...
-    }).catch(error => {
-        console.error(error);
-    });
     //append item for each loan offer
     // var loanOffersDiv = document.createElement('div')
     // loanOffersDiv.id = 'loanOffers'

@@ -2,10 +2,10 @@
     "name": "mantissa",
     "version": "1.0",
     "description": "EVEN for you",
-    "permissions": ["activeTab", "declarativeContent", "storage", "https://www.amazon.com/"],
+    "permissions": ["webRequest", "activeTab", "declarativeContent", "storage", "https://www.amazon.com/"],
     "background": {
       "scripts": ["background.js"],
-      "persistent": false
+      "persistent": true
     },
     "browser_action": {
         "default_icon": "images/get_started16.png",
@@ -17,8 +17,16 @@
           "include_globs": ["*qid*"],
           "css": ["content.css"],
           "js": ["content.js"]
-        }
+        },
+        {
+            "matches": ["https://*.amazon.com/*"],
+            "include_globs": ["*qid*"],
+            "css": ["content.css"],
+            "js": ["contentScript.js"],
+            "run_at": "document_start"
+          }
     ],
+    "web_accessible_resources": ["injected.js"],
     "options_page": "options.html",
     "icons": {
         "16": "images/get_started16.png",

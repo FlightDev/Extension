@@ -2,7 +2,7 @@
     "name": "mantissa",
     "version": "1.0",
     "description": "EVEN for you",
-    "permissions": ["webRequest", "activeTab", "declarativeContent", "storage", "https://www.amazon.com/"],
+    "permissions": ["webRequest", "activeTab", "declarativeContent", "storage", "https://www.amazon.com/", "https://*.evenfinancial.com/"],
     "background": {
       "scripts": ["background.js"],
       "persistent": true
@@ -14,7 +14,7 @@
     "content_scripts": [
         {
           "matches": ["https://*.amazon.com/*"],
-          "include_globs": ["*qid*"],
+          "include_globs": ["*dp*"],
           "css": ["content.css"],
           "js": ["content.js"]
         }
